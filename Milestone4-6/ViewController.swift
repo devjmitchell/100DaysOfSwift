@@ -31,13 +31,9 @@ class ViewController: UITableViewController {
     }
     
     @objc func clearShoppingList() {
-//        shoppingList.removeAll(keepingCapacity: true)
-//        tableView.reloadData()
-        
         let ac = UIAlertController(title: "Clear List", message: "Are you sure you would like to clear the list?", preferredStyle: .alert)
         
         let confirmAction = UIAlertAction(title: "Do it!", style: .destructive) { _ in
-//            self.clear()
             self.shoppingList.removeAll(keepingCapacity: true)
             self.tableView.reloadData()
         }
@@ -47,11 +43,6 @@ class ViewController: UITableViewController {
         ac.addAction(declineAction)
         present(ac, animated: true)
     }
-    
-//    func clear() {
-//        shoppingList.removeAll(keepingCapacity: true)
-//        tableView.reloadData()
-//    }
     
     @objc func addItem() {
         let ac = UIAlertController(title: "Add item", message: nil, preferredStyle: .alert)
