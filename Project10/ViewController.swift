@@ -92,13 +92,13 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ac = UIAlertController(title: "Edit Image", message: "How would you like to edit this image?", preferredStyle: .alert)
         
-        ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
-            self?.people.remove(at: indexPath.item)
-            self?.collectionView.reloadData()
-        })
         ac.addAction(UIAlertAction(title: "Rename", style: .default) { [weak self] _ in
             self?.dismiss(animated: true)
             self?.renameImage(at: indexPath)
+        })
+        ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.people.remove(at: indexPath.item)
+            self?.collectionView.reloadData()
         })
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
@@ -116,8 +116,8 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
             person.name = newName
             self?.collectionView.reloadData()
         })
-        
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
         present(ac, animated: true)
     }
 }
