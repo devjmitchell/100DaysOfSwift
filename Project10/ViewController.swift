@@ -14,7 +14,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -41,8 +41,27 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         return cell
     }
     
-    @objc func addNewPerson() {
+    @objc func add() {
         let picker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
+            let ac = UIAlertController(title: "How would you like to choose pictures?", message: nil, preferredStyle: .actionSheet)
+            
+            ac.addAction(UIAlertAction(title: "Camera", style: .default) { [weak self] _ in
+                picker.sourceType = .camera
+                self?.choosePerson(with: picker)
+            })
+            ac.addAction(UIAlertAction(title: "Photo Library", style: .default) { [weak self] _ in
+                self?.choosePerson(with: picker)
+            })
+            
+            present(ac, animated: true)
+        } else {
+            choosePerson(with: picker)
+        }
+    }
+    
+    func choosePerson(with picker: UIImagePickerController) {
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true)
@@ -81,6 +100,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
             self?.dismiss(animated: true)
             self?.renameImage(at: indexPath)
         })
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         present(ac, animated: true)
     }
