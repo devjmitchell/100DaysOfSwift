@@ -54,7 +54,7 @@ class GameScene: SKScene {
             guard let whackSlot = node.parent?.parent as? WhackSlot else { continue }
             if !whackSlot.isVisible { continue }
             if whackSlot.isHit { continue }
-            whackSlot.hit()
+            whackSlot.hit(at: node.position)
             
             if node.name == "charFriend" {
                 // they shouldn't have whacked this penguin
@@ -87,10 +87,19 @@ class GameScene: SKScene {
                 slot.hide()
             }
             
+            run(SKAction.playSoundFileNamed("gameover.m4a", waitForCompletion: false))
+            
             let gameOver = SKSpriteNode(imageNamed: "gameOver")
             gameOver.position = CGPoint(x: 512, y: 384)
             gameOver.zPosition = 1
             addChild(gameOver)
+            
+            let finalScore = SKLabelNode(text: "Final Score: \(score)")
+            finalScore.fontSize = 72
+            finalScore.position = CGPoint(x: 512, y: 450)
+            gameOver.zPosition = 2
+            addChild(finalScore)
+            
             return
         }
         

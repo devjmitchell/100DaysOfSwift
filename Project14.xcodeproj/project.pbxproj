@@ -17,6 +17,8 @@
 		D32685F6224DC3CE00646516 /* whack.caf in Resources */ = {isa = PBXBuildFile; fileRef = D32685F4224DC3CD00646516 /* whack.caf */; };
 		D32685F7224DC3CE00646516 /* whackBad.caf in Resources */ = {isa = PBXBuildFile; fileRef = D32685F5224DC3CE00646516 /* whackBad.caf */; };
 		D32685F9224DC5C900646516 /* WhackSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32685F8224DC5C900646516 /* WhackSlot.swift */; };
+		D32965BB2250283D0056EF93 /* gameover.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D32965BA2250283D0056EF93 /* gameover.m4a */; };
+		D32965BD22502C100056EF93 /* HitSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = D32965BC22502C100056EF93 /* HitSmoke.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		D32685F4224DC3CD00646516 /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
 		D32685F5224DC3CE00646516 /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whackBad.caf; sourceTree = "<group>"; };
 		D32685F8224DC5C900646516 /* WhackSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhackSlot.swift; sourceTree = "<group>"; };
+		D32965BA2250283D0056EF93 /* gameover.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameover.m4a; sourceTree = "<group>"; };
+		D32965BC22502C100056EF93 /* HitSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HitSmoke.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 				D32685E9224DC2C400646516 /* Assets.xcassets */,
 				D32685EB224DC2C400646516 /* LaunchScreen.storyboard */,
 				D32685EE224DC2C400646516 /* Info.plist */,
+				D32965BC22502C100056EF93 /* HitSmoke.sks */,
+				D32965BA2250283D0056EF93 /* gameover.m4a */,
 				D32685F4224DC3CD00646516 /* whack.caf */,
 				D32685F5224DC3CE00646516 /* whackBad.caf */,
 			);
@@ -142,8 +148,10 @@
 				D32685F6224DC3CE00646516 /* whack.caf in Resources */,
 				D32685DF224DC2C400646516 /* GameScene.sks in Resources */,
 				D32685EA224DC2C400646516 /* Assets.xcassets in Resources */,
+				D32965BB2250283D0056EF93 /* gameover.m4a in Resources */,
 				D32685ED224DC2C400646516 /* LaunchScreen.storyboard in Resources */,
 				D32685F7224DC3CE00646516 /* whackBad.caf in Resources */,
+				D32965BD22502C100056EF93 /* HitSmoke.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
