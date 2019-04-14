@@ -9,25 +9,27 @@
 /* Begin PBXBuildFile section */
 		D3D382812263E3E0000B33A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D382802263E3E0000B33A6 /* AppDelegate.swift */; };
 		D3D382832263E3E0000B33A6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D3D382822263E3E0000B33A6 /* GameScene.sks */; };
-		D3D382852263E3E0000B33A6 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D3D382842263E3E0000B33A6 /* Actions.sks */; };
 		D3D382872263E3E0000B33A6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D382862263E3E0000B33A6 /* GameScene.swift */; };
 		D3D382892263E3E0000B33A6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D382882263E3E0000B33A6 /* GameViewController.swift */; };
 		D3D3828C2263E3E0000B33A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3D3828A2263E3E0000B33A6 /* Main.storyboard */; };
 		D3D3828E2263E3E1000B33A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D3828D2263E3E1000B33A6 /* Assets.xcassets */; };
 		D3D382912263E3E1000B33A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3D3828F2263E3E1000B33A6 /* LaunchScreen.storyboard */; };
+		D3D3829A2263E54D000B33A6 /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = D3D382982263E54D000B33A6 /* explosion.sks */; };
+		D3D3829B2263E54D000B33A6 /* starfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = D3D382992263E54D000B33A6 /* starfield.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D3D3827D2263E3E0000B33A6 /* Project17.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project17.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D382802263E3E0000B33A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3D382822263E3E0000B33A6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		D3D382842263E3E0000B33A6 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		D3D382862263E3E0000B33A6 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D3D382882263E3E0000B33A6 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D3D3828B2263E3E0000B33A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3D3828D2263E3E1000B33A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3D382902263E3E1000B33A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3D382922263E3E1000B33A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3D382982263E54D000B33A6 /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
+		D3D382992263E54D000B33A6 /* starfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = starfield.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,13 +64,14 @@
 			children = (
 				D3D382802263E3E0000B33A6 /* AppDelegate.swift */,
 				D3D382822263E3E0000B33A6 /* GameScene.sks */,
-				D3D382842263E3E0000B33A6 /* Actions.sks */,
 				D3D382862263E3E0000B33A6 /* GameScene.swift */,
 				D3D382882263E3E0000B33A6 /* GameViewController.swift */,
 				D3D3828A2263E3E0000B33A6 /* Main.storyboard */,
 				D3D3828D2263E3E1000B33A6 /* Assets.xcassets */,
 				D3D3828F2263E3E1000B33A6 /* LaunchScreen.storyboard */,
 				D3D382922263E3E1000B33A6 /* Info.plist */,
+				D3D382982263E54D000B33A6 /* explosion.sks */,
+				D3D382992263E54D000B33A6 /* starfield.sks */,
 			);
 			path = Project17;
 			sourceTree = "<group>";
@@ -134,8 +137,9 @@
 				D3D3828C2263E3E0000B33A6 /* Main.storyboard in Resources */,
 				D3D382832263E3E0000B33A6 /* GameScene.sks in Resources */,
 				D3D3828E2263E3E1000B33A6 /* Assets.xcassets in Resources */,
+				D3D3829A2263E54D000B33A6 /* explosion.sks in Resources */,
 				D3D382912263E3E1000B33A6 /* LaunchScreen.storyboard in Resources */,
-				D3D382852263E3E0000B33A6 /* Actions.sks in Resources */,
+				D3D3829B2263E54D000B33A6 /* starfield.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +308,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.devjm.Project17;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -322,7 +326,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.devjm.Project17;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
