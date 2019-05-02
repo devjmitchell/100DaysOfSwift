@@ -10,17 +10,25 @@ import CoreLocation
 import UIKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
-
+    
+    @IBOutlet var circle: UIView!
     @IBOutlet var distanceReading: UILabel!
     @IBOutlet var beaconLabel: UILabel!
     var locationManager: CLLocationManager?
+    var currentBeaconUUID: UUID?
+    var currentBeaconName: String? {
+        if let currentBeacon = currentBeaconUUID {
+            return beacons[currentBeacon]
+        } else {
+            return nil
+        }
+    }
     
     let beacons: [UUID: String] = [
-        UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!: "Beacon 1",
-        UUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")!: "Beacon 2",
+        UUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")!: "Beacon 1",
+        UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!: "Beacon 2"
     ]
     
-    var currentBeacon: UUID?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +38,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager?.requestAlwaysAuthorization()
         
         view.backgroundColor = .gray
+        
+        circle.backgroundColor = .gray
+        circle.layer.cornerRadius = circle.layer.bounds.width / 2
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -51,44 +62,48 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func update(distance: CLProximity) {
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [], animations: {
             switch distance {
             case .far:
-                self.view.backgroundColor = .blue
                 self.distanceReading.text = "FAR"
+                self.circle.backgroundColor = .blue
+                self.circle.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
                 
             case .near:
-                self.view.backgroundColor = .orange
                 self.distanceReading.text = "NEAR"
+                self.circle.backgroundColor = .orange
+                self.circle.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
                 
             case .immediate:
-                self.view.backgroundColor = .red
                 self.distanceReading.text = "RIGHT HERE"
+                self.circle.backgroundColor = .red
+                self.circle.transform = CGAffineTransform(scaleX: 0.25, y: 0.25)
                 
             default:
-                self.view.backgroundColor = .gray
                 self.distanceReading.text = "UNKNOWN"
                 self.beaconLabel.text = ""
+                self.circle.backgroundColor = .gray
+                self.circle.transform = .identity
+                
             }
-        }
+        })
     }
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if let beacon = beacons.first {
+            beaconLabel.text = currentBeaconName
+            
             update(distance: beacon.proximity)
             
-            if currentBeacon != beacon.proximityUUID {
-                currentBeacon = beacon.proximityUUID
-                
-                let beaconName = self.beacons[currentBeacon!]!
-                beaconLabel.text = beaconName
-                showFoundAlert(for: beaconName)
+            if currentBeaconUUID != beacon.proximityUUID {
+                currentBeaconUUID = beacon.proximityUUID
+                showFoundAlert()
             }
         }
     }
     
-    func showFoundAlert(for beacon: String) {
-        let ac = UIAlertController(title: "\(beacon) Nearby", message: nil, preferredStyle: .alert)
+    func showFoundAlert() {
+        let ac = UIAlertController(title: "\(currentBeaconName ?? "Beacon") Nearby", message: "UUID:\n\(currentBeaconUUID?.uuidString ?? "")", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Let's find it!", style: .default))
         present(ac, animated: true)
     }
