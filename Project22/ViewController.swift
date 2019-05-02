@@ -13,6 +13,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet var distanceReading: UILabel!
     var locationManager: CLLocationManager?
+    var beaconAlreadyFound = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func update(distance: CLProximity) {
+        if distance != .unknown {
+            if !beaconAlreadyFound {
+                beaconAlreadyFound = true
+                presentFoundAlert()
+            }
+        }
+        
         UIView.animate(withDuration: 1) {
             switch distance {
             case .far:
@@ -60,8 +68,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             default:
                 self.view.backgroundColor = .gray
                 self.distanceReading.text = "UNKNOWN"
+                self.beaconAlreadyFound = false
             }
         }
+    }
+    
+    func presentFoundAlert() {
+        let ac = UIAlertController(title: "Beacon Found", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Let's find it!", style: .default))
+        present(ac, animated: true)
     }
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
