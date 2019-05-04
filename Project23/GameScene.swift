@@ -27,6 +27,8 @@ struct EnemyPosition {
 
 class GameScene: SKScene {
     var gameScore: SKLabelNode!
+    var gameOverSprite: SKSpriteNode!
+    var playAgainLabel: SKLabelNode!
     
     var score = 0 {
         didSet {
@@ -52,6 +54,7 @@ class GameScene: SKScene {
     var nextSequenceQueued = true
     
     var isGameEnded = false
+    var isPlayAgainEnabled = false
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -66,18 +69,7 @@ class GameScene: SKScene {
         createScore()
         createLives()
         createSlices()
-        
-        sequence = [.oneNoBomb, .oneNoBomb, .twoWithOneBomb, .twoWithOneBomb, .three, .one, .chain]
-        
-        for _ in 0...1000 {
-            if let nextSequence = SequenceType.allCases.randomElement() {
-                sequence.append(nextSequence)
-            }
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.tossEnemies()
-        }
+        startSequence()
     }
     
     func createScore() {
@@ -114,6 +106,20 @@ class GameScene: SKScene {
         
         addChild(activeSliceBG)
         addChild(activeSliceFG)
+    }
+    
+    func startSequence() {
+        sequence = [.oneNoBomb, .oneNoBomb, .twoWithOneBomb, .twoWithOneBomb, .three, .one, .chain]
+        
+        for _ in 0...1000 {
+            if let nextSequence = SequenceType.allCases.randomElement() {
+                sequence.append(nextSequence)
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.tossEnemies()
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -188,7 +194,7 @@ class GameScene: SKScene {
         guard isGameEnded == false else { return }
         
         isGameEnded = true
-        physicsWorld.speed = 0
+//        physicsWorld.speed = 0
         isUserInteractionEnabled = false
         
         bombSoundEffect?.stop()
@@ -198,6 +204,27 @@ class GameScene: SKScene {
             livesImages[0].texture = SKTexture(imageNamed: "sliceLifeGone")
             livesImages[1].texture = SKTexture(imageNamed: "sliceLifeGone")
             livesImages[2].texture = SKTexture(imageNamed: "sliceLifeGone")
+        }
+        
+        gameOverSprite = SKSpriteNode(imageNamed: "gameOver")
+        gameOverSprite.position = CGPoint(x: 512, y: 480)
+        gameOverSprite.zPosition = 1
+        addChild(gameOverSprite)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            guard let self = self else { return }
+            
+            self.playAgainLabel = SKLabelNode(text: "Play Again?")
+            self.playAgainLabel.position = CGPoint(x: 512, y: 384)
+            self.playAgainLabel.zPosition = 1
+            self.playAgainLabel.fontName = "Chalkduster"
+            self.playAgainLabel.fontSize = 48
+            self.addChild(self.playAgainLabel)
+            
+            self.isPlayAgainEnabled = true
+            self.isUserInteractionEnabled = true
+            
+//            self.physicsWorld.speed = 0.85
         }
     }
     
@@ -217,6 +244,26 @@ class GameScene: SKScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         activeSliceBG.run(SKAction.fadeOut(withDuration: 0.25))
         activeSliceFG.run(SKAction.fadeOut(withDuration: 0.25))
+        
+        if isPlayAgainEnabled {
+            gameOverSprite.removeFromParent()
+            playAgainLabel.removeFromParent()
+            
+            lives = 3
+            popupTime = 0.9
+            sequencePosition = 0
+            chainDelay = 3.0
+            
+            score = 0
+            livesImages[0].texture = SKTexture(imageNamed: "sliceLife")
+            livesImages[1].texture = SKTexture(imageNamed: "sliceLife")
+            livesImages[2].texture = SKTexture(imageNamed: "sliceLife")
+            
+            isGameEnded = false
+            isPlayAgainEnabled = false
+            
+            startSequence()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -327,6 +374,8 @@ class GameScene: SKScene {
     }
     
     func subtractLife() {
+        guard isGameEnded == false else { return }
+        
         lives -= 1
         
         run(SKAction.playSoundFileNamed("wrong.caf", waitForCompletion: false))
