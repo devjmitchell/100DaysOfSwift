@@ -224,7 +224,7 @@ class GameScene: SKScene {
             self.isPlayAgainEnabled = true
             self.isUserInteractionEnabled = true
             
-//            self.physicsWorld.speed = 0.85
+            self.physicsWorld.speed = 0.85
         }
     }
     
