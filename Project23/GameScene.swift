@@ -17,6 +17,14 @@ enum SequenceType: CaseIterable {
     case oneNoBomb, one, twoWithOneBomb, two, three, four, chain, fastChain
 }
 
+struct EnemyPosition {
+    static let rangeForRandomPositionX = 64...960
+    static let rangeForRandomAngularVelocity: ClosedRange<CGFloat> = -3...3
+    static let rangeForHighRandomXVelocity = 8...15
+    static let rangeForLowRandomXVelocity = 3...15
+    static let rangeForRandomYVelocity = 24...32
+}
+
 class GameScene: SKScene {
     var gameScore: SKLabelNode!
     
@@ -291,23 +299,23 @@ class GameScene: SKScene {
             enemy.name = "enemy"
         }
         
-        let randomPosition = CGPoint(x: Int.random(in: 64...960), y: -128)
+        let randomPosition = CGPoint(x: Int.random(in: EnemyPosition.rangeForRandomPositionX), y: -128)
         enemy.position = randomPosition
         
-        let randomAngularVelocity = CGFloat.random(in: -3...3)
+        let randomAngularVelocity = CGFloat.random(in: EnemyPosition.rangeForRandomAngularVelocity)
         let randomXVelocity: Int
         
         if randomPosition.x < 256 {
-            randomXVelocity = Int.random(in: 8...15)
+            randomXVelocity = Int.random(in: EnemyPosition.rangeForHighRandomXVelocity)
         } else if randomPosition.x < 512 {
-            randomXVelocity = Int.random(in: 3...5)
+            randomXVelocity = Int.random(in: EnemyPosition.rangeForLowRandomXVelocity)
         } else if randomPosition.x < 768 {
-            randomXVelocity = -Int.random(in: 3...5)
+            randomXVelocity = -Int.random(in: EnemyPosition.rangeForLowRandomXVelocity)
         } else {
-            randomXVelocity = -Int.random(in: 8...15)
+            randomXVelocity = -Int.random(in: EnemyPosition.rangeForHighRandomXVelocity)
         }
         
-        let randomYVelocity = Int.random(in: 24...32)
+        let randomYVelocity = Int.random(in: EnemyPosition.rangeForRandomYVelocity)
         
         enemy.physicsBody = SKPhysicsBody(circleOfRadius: 64)
         enemy.physicsBody?.velocity = CGVector(dx: randomXVelocity * 40, dy: randomYVelocity * 40)
