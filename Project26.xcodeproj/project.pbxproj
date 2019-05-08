@@ -73,8 +73,8 @@
 				D3DF1B2B227FF76C00DFB827 /* LaunchScreen.storyboard */,
 				D3DF1B2E227FF76C00DFB827 /* Info.plist */,
 				D3573E5722829AA9004E47DA /* Flash.sks */,
-				D32C8F6C227FF82A00BE9E2C /* level2.txt */,
 				D31E0EAB2282A5AA00FDC2D2 /* level1.txt */,
+				D32C8F6C227FF82A00BE9E2C /* level2.txt */,
 			);
 			path = Project26;
 			sourceTree = "<group>";

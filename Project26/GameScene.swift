@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var motionManager: CMMotionManager?
     var isGameOver = false
     
+    var currentLevel = 1
     var scoreLabel: SKLabelNode!
     
     var score = 0 {
@@ -36,20 +37,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
-        let background = SKSpriteNode(imageNamed: "background")
-        background.position = CGPoint(x: 512, y: 384)
-        background.blendMode = .replace
-        background.zPosition = -1
-        addChild(background)
-        
-        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-        scoreLabel.text = "Score: 0"
-        scoreLabel.horizontalAlignmentMode = .left
-        scoreLabel.position = CGPoint(x: 16, y: 16)
-        scoreLabel.zPosition = 2
-        addChild(scoreLabel)
-        
-        loadLevel()
+        addBackground()
+        addScore()
+        loadLevel(currentLevel)
         createPlayer()
         
         physicsWorld.gravity = .zero
@@ -59,9 +49,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         motionManager?.startAccelerometerUpdates()
     }
     
-    func loadLevel() {
-        guard let levelURL = Bundle.main.url(forResource: "level1", withExtension: "txt") else {
-            fatalError("Could not find level1.txt in the app bundle.")
+    func addBackground() {
+        let background = SKSpriteNode(imageNamed: "background")
+        background.position = CGPoint(x: 512, y: 384)
+        background.blendMode = .replace
+        background.zPosition = -1
+        addChild(background)
+    }
+    
+    func addScore() {
+        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        scoreLabel.text = "Score: \(score)"
+        scoreLabel.horizontalAlignmentMode = .left
+        scoreLabel.position = CGPoint(x: 16, y: 16)
+        scoreLabel.zPosition = 2
+        addChild(scoreLabel)
+    }
+    
+    func loadLevel(_ level: Int) {
+        guard let levelURL = Bundle.main.url(forResource: "level\(level)", withExtension: "txt") else {
+            if currentLevel == 1 {
+                fatalError("Could not find level1.txt in the app bundle.")
+            } else {
+                currentLevel = 1
+                loadLevel(currentLevel)
+                return
+            }
         }
         guard let levelString = try? String(contentsOf: levelURL) else {
             fatalError("Could not load level1.txt from the app bundle.")
@@ -249,7 +262,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.player.physicsBody?.isDynamic = true
             }
         } else if node.name == "finish" {
-            // next level
+            removeAllChildren()
+            addBackground()
+            addScore()
+            currentLevel += 1
+            loadLevel(currentLevel)
+            createPlayer()
         }
     }
 }
