@@ -14,12 +14,15 @@ enum CollisionTypes: UInt32 {
     case wall = 2
     case star = 4
     case vortex = 8
-    case finish = 16
+    case portal = 16
+    case finish = 32
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: SKSpriteNode!
     var lastTouchPosition: CGPoint?
+    
+    var warpToPositions = [CGPoint]()
     
     var motionManager: CMMotionManager?
     var isGameOver = false
@@ -105,7 +108,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     node.physicsBody?.contactTestBitMask = CollisionTypes.player.rawValue
                     node.physicsBody?.collisionBitMask = 0
                     node.position = position
+                    
                     addChild(node)
+                } else if letter == "p" {
+                    // load portal
+                    let node = SKSpriteNode(imageNamed: "portal")
+                    node.name = "portal"
+                    node.position = position
+                    
+                    let pulseDown = SKAction.scale(to: 0.75, duration: 0.5)
+                    let pulseUp = SKAction.scale(to: 1.0, duration: 0.5)
+                    let pulse = SKAction.sequence([pulseDown, pulseUp])
+                    node.run(SKAction.repeatForever(pulse))
+                    node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width / 2)
+                    node.physicsBody?.isDynamic = false
+                    
+                    node.physicsBody?.categoryBitMask = CollisionTypes.portal.rawValue
+                    node.physicsBody?.contactTestBitMask = CollisionTypes.player.rawValue
+                    node.physicsBody?.collisionBitMask = 0
+                    
+                    addChild(node)
+                } else if letter == "q" {
+                    warpToPositions.append(position)
                 } else if letter == "f" {
                     // load finish point
                     let node = SKSpriteNode(imageNamed: "finish")
@@ -117,6 +141,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     node.physicsBody?.contactTestBitMask = CollisionTypes.player.rawValue
                     node.physicsBody?.collisionBitMask = 0
                     node.position = position
+                    
                     addChild(node)
                 } else if letter == " " {
                     // this is an empty space - do nothing!
@@ -127,9 +152,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func createPlayer() {
+    func createPlayer(at position: CGPoint = CGPoint(x: 96, y: 672)) {
         player = SKSpriteNode(imageNamed: "player")
-        player.position = CGPoint(x: 96, y: 672)
+        player.position = position
         player.zPosition = 1
         
         player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2)
@@ -202,6 +227,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if node.name == "star" {
             node.removeFromParent()
             score += 1
+        } else if node.name == "portal" {
+            player.physicsBody?.isDynamic = false
+            let move = SKAction.move(to: node.position, duration: 0.25)
+            let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+            let remove = SKAction.removeFromParent()
+            let sequence = SKAction.sequence([move, fadeOut, remove])
+            player.run(sequence) { [weak self] in
+                guard let self = self else { return }
+                
+                if let randomWarpPosition = self.warpToPositions.randomElement() {
+                    self.createPlayer(at: randomWarpPosition)
+                } else {
+                    self.createPlayer()
+                }
+                
+                if let flash = SKEmitterNode(fileNamed: "Flash.sks") {
+                    flash.position = self.player.position
+                    self.addChild(flash)
+                }
+                self.player.physicsBody?.isDynamic = true
+            }
         } else if node.name == "finish" {
             // next level
         }

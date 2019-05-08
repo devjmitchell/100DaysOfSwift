@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D32C8F6D227FF82A00BE9E2C /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = D32C8F6C227FF82A00BE9E2C /* level1.txt */; };
+		D3573E5822829AA9004E47DA /* Flash.sks in Resources */ = {isa = PBXBuildFile; fileRef = D3573E5722829AA9004E47DA /* Flash.sks */; };
 		D3DF1B1D227FF76B00DFB827 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DF1B1C227FF76B00DFB827 /* AppDelegate.swift */; };
 		D3DF1B1F227FF76B00DFB827 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D3DF1B1E227FF76B00DFB827 /* GameScene.sks */; };
 		D3DF1B23227FF76B00DFB827 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DF1B22227FF76B00DFB827 /* GameScene.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		D32C8F6C227FF82A00BE9E2C /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
+		D3573E5722829AA9004E47DA /* Flash.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Flash.sks; sourceTree = "<group>"; };
 		D3DF1B19227FF76B00DFB827 /* Project26.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project26.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DF1B1C227FF76B00DFB827 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3DF1B1E227FF76B00DFB827 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				D3DF1B29227FF76C00DFB827 /* Assets.xcassets */,
 				D3DF1B2B227FF76C00DFB827 /* LaunchScreen.storyboard */,
 				D3DF1B2E227FF76C00DFB827 /* Info.plist */,
+				D3573E5722829AA9004E47DA /* Flash.sks */,
 				D32C8F6C227FF82A00BE9E2C /* level1.txt */,
 			);
 			path = Project26;
@@ -135,6 +138,7 @@
 				D3DF1B28227FF76B00DFB827 /* Main.storyboard in Resources */,
 				D3DF1B1F227FF76B00DFB827 /* GameScene.sks in Resources */,
 				D3DF1B2A227FF76C00DFB827 /* Assets.xcassets in Resources */,
+				D3573E5822829AA9004E47DA /* Flash.sks in Resources */,
 				D3DF1B2D227FF76C00DFB827 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
