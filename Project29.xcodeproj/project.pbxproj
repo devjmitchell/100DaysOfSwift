@@ -9,25 +9,29 @@
 /* Begin PBXBuildFile section */
 		D32E930F22845E8F00377612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E930E22845E8F00377612 /* AppDelegate.swift */; };
 		D32E931122845E8F00377612 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D32E931022845E8F00377612 /* GameScene.sks */; };
-		D32E931322845E8F00377612 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D32E931222845E8F00377612 /* Actions.sks */; };
 		D32E931522845E8F00377612 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E931422845E8F00377612 /* GameScene.swift */; };
 		D32E931722845E8F00377612 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E931622845E8F00377612 /* GameViewController.swift */; };
 		D32E931A22845E8F00377612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D32E931822845E8F00377612 /* Main.storyboard */; };
 		D32E931C22845E8F00377612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D32E931B22845E8F00377612 /* Assets.xcassets */; };
 		D32E931F22845E8F00377612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D32E931D22845E8F00377612 /* LaunchScreen.storyboard */; };
+		D3575D3F22852EE300578F6E /* hitBuilding.sks in Resources */ = {isa = PBXBuildFile; fileRef = D3575D3D22852EE300578F6E /* hitBuilding.sks */; };
+		D3575D4022852EE300578F6E /* hitPlayer.sks in Resources */ = {isa = PBXBuildFile; fileRef = D3575D3E22852EE300578F6E /* hitPlayer.sks */; };
+		D36B146622845F4D00894EA7 /* BuildingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B146522845F4D00894EA7 /* BuildingNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D32E930B22845E8F00377612 /* Project29.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project29.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32E930E22845E8F00377612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D32E931022845E8F00377612 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		D32E931222845E8F00377612 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		D32E931422845E8F00377612 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D32E931622845E8F00377612 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D32E931922845E8F00377612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D32E931B22845E8F00377612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D32E931E22845E8F00377612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D32E932022845E8F00377612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3575D3D22852EE300578F6E /* hitBuilding.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitBuilding.sks; sourceTree = "<group>"; };
+		D3575D3E22852EE300578F6E /* hitPlayer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitPlayer.sks; sourceTree = "<group>"; };
+		D36B146522845F4D00894EA7 /* BuildingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,13 +66,15 @@
 			children = (
 				D32E930E22845E8F00377612 /* AppDelegate.swift */,
 				D32E931022845E8F00377612 /* GameScene.sks */,
-				D32E931222845E8F00377612 /* Actions.sks */,
 				D32E931422845E8F00377612 /* GameScene.swift */,
+				D36B146522845F4D00894EA7 /* BuildingNode.swift */,
 				D32E931622845E8F00377612 /* GameViewController.swift */,
 				D32E931822845E8F00377612 /* Main.storyboard */,
 				D32E931B22845E8F00377612 /* Assets.xcassets */,
 				D32E931D22845E8F00377612 /* LaunchScreen.storyboard */,
 				D32E932022845E8F00377612 /* Info.plist */,
+				D3575D3D22852EE300578F6E /* hitBuilding.sks */,
+				D3575D3E22852EE300578F6E /* hitPlayer.sks */,
 			);
 			path = Project29;
 			sourceTree = "<group>";
@@ -132,10 +138,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D32E931A22845E8F00377612 /* Main.storyboard in Resources */,
+				D3575D3F22852EE300578F6E /* hitBuilding.sks in Resources */,
+				D3575D4022852EE300578F6E /* hitPlayer.sks in Resources */,
 				D32E931122845E8F00377612 /* GameScene.sks in Resources */,
 				D32E931C22845E8F00377612 /* Assets.xcassets in Resources */,
 				D32E931F22845E8F00377612 /* LaunchScreen.storyboard in Resources */,
-				D32E931322845E8F00377612 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D32E931522845E8F00377612 /* GameScene.swift in Sources */,
+				D36B146622845F4D00894EA7 /* BuildingNode.swift in Sources */,
 				D32E931722845E8F00377612 /* GameViewController.swift in Sources */,
 				D32E930F22845E8F00377612 /* AppDelegate.swift in Sources */,
 			);
@@ -304,7 +312,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.devjm.Project29;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -322,7 +330,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.devjm.Project29;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
