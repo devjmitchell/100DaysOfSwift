@@ -152,6 +152,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func destroy(player: SKSpriteNode) {
+        if currentPlayer == 1 {
+            viewController?.player1Wins += 1
+        } else {
+            viewController?.player2Wins += 1
+        }
+        
         if let explosion = SKEmitterNode(fileNamed: "hitPlayer") {
             explosion.position = player.position
             addChild(explosion)

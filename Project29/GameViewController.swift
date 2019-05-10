@@ -19,6 +19,18 @@ class GameViewController: UIViewController {
     @IBOutlet var velocityLabel: UILabel!
     @IBOutlet var launchButton: UIButton!
     @IBOutlet var playerNumber: UILabel!
+    @IBOutlet var player1WinsLabel: UILabel!
+    @IBOutlet var player2WinsLabel: UILabel!
+    var player1Wins = 0 {
+        didSet {
+            player1WinsLabel.text = "PLAYER 1 WINS: \(player1Wins)"
+        }
+    }
+    var player2Wins = 0 {
+        didSet {
+            player2WinsLabel.text = "PLAYER 2 WINS: \(player2Wins)"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
