@@ -58,7 +58,8 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         center.delegate = self
         
         let show = UNNotificationAction(identifier: "show", title: "Tell me more...", options: .foreground)
-        let category = UNNotificationCategory(identifier: "alarm", actions: [show], intentIdentifiers: [])
+        let show2 = UNNotificationAction(identifier: "show2", title: "And another...", options: .foreground)
+        let category = UNNotificationCategory(identifier: "alarm", actions: [show, show2], intentIdentifiers: [])
         
         center.setNotificationCategories([category])
     }
@@ -76,6 +77,9 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
                 
             case "show":
                 print("Show more information...")
+                
+            case "show2":
+                print("And another one...")
                 
             default:
                 break
